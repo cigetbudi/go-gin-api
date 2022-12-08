@@ -38,7 +38,7 @@ func NewPostGresSQLClient() {
 		password = getEnv("DB_PASSWORD")
 	)
 
-	conn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable",
+	conn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=require",
 		host,
 		port,
 		user,
