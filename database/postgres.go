@@ -78,3 +78,12 @@ func ReadArticles() ([]*Article, error) {
 	}
 	return as, nil
 }
+
+func UpdateArticle(a *Article) (*Article, error) {
+	var upa Article
+	res := db.Model(&upa).Where(a.ID).Updates(a)
+	if res.RowsAffected == 0 {
+		return &Article{}, errors.New("article gagal diupdate")
+	}
+	return &upa, nil
+}
