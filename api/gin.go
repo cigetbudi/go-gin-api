@@ -62,3 +62,22 @@ func getArticles(c *gin.Context) {
 		"articles": as,
 	})
 }
+
+func putArticle(c *gin.Context) {
+	var a database.Article
+	if err := c.ShouldBindJSON(&a); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err,
+		})
+		return
+	}
+	res, err := database.UpdateArticle(&a)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err,
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"article": res,
+	})
+}
