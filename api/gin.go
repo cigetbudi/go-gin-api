@@ -2,6 +2,7 @@ package api
 
 import (
 	"go-gin-api/database"
+	"go-gin-api/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -25,7 +26,7 @@ func home(c *gin.Context) {
 }
 
 func postArticle(c *gin.Context) {
-	var a database.Article
+	var a models.Article
 	if err := c.ShouldBindJSON(&a); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err,
@@ -75,7 +76,7 @@ func getArticles(c *gin.Context) {
 }
 
 func putArticle(c *gin.Context) {
-	var a database.Article
+	var a models.Article
 	if err := c.ShouldBindJSON(&a); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err,
