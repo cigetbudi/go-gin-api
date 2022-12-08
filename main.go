@@ -1,19 +1,15 @@
 package main
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"go-gin-api/api"
+	"go-gin-api/database"
 )
 
+func init() {
+	database.NewPostGresSQLClient()
+}
+
 func main() {
-	r := gin.Default()
-
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "udah jalan",
-		})
-	})
-
+	r := api.SetupRouter()
 	r.Run(":6821")
 }
