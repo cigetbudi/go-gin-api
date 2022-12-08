@@ -49,3 +49,16 @@ func getArticle(c *gin.Context) {
 		"article": a,
 	})
 }
+
+func getArticles(c *gin.Context) {
+	as, err := database.ReadArticles()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": err,
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"articles": as,
+	})
+}
