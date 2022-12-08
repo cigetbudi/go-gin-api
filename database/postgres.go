@@ -13,7 +13,6 @@ import (
 
 var db *gorm.DB
 var err error
-var a models.Article
 
 func getEnv(key string) string {
 	err := godotenv.Load(".env")
