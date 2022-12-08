@@ -34,3 +34,18 @@ func postArticle(c *gin.Context) {
 	})
 
 }
+
+func getArticle(c *gin.Context) {
+	id := c.Param("id")
+
+	a, err := database.ReadArticle(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "article tidak ditemukan",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"article": a,
+	})
+}
