@@ -87,3 +87,12 @@ func UpdateArticle(a *Article) (*Article, error) {
 	}
 	return &upa, nil
 }
+
+func DeleteArticle(id string) error {
+	var dela Article
+	res := db.Where(id).Delete(&dela)
+	if res.RowsAffected == 0 {
+		return errors.New("article gagal dihapus")
+	}
+	return nil
+}
