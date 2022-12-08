@@ -81,3 +81,18 @@ func putArticle(c *gin.Context) {
 		"article": res,
 	})
 }
+
+func deleteArticle(c *gin.Context) {
+	id := c.Param("id")
+	err := database.DeleteArticle(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "article tidak ditemukan, gagal dihapus",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": "article berhasil dihapus",
+	})
+
+}
