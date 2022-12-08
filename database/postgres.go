@@ -60,3 +60,12 @@ func CreateArticle(a *Article) (*Article, error) {
 	}
 	return a, nil
 }
+
+func ReadArticle(id string) (*Article, error) {
+	var a Article
+	res := db.First(&a, id)
+	if res.RowsAffected == 0 {
+		return nil, errors.New("article tidak ditemukan")
+	}
+	return &a, nil
+}
