@@ -1,6 +1,7 @@
 package database
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -50,4 +51,12 @@ func NewPostGresSQLClient() {
 	}
 
 	db.AutoMigrate(Article{})
+}
+
+func CreateArticle(a *Article) (*Article, error) {
+	res := db.Create(a)
+	if res.RowsAffected == 0 {
+		return &Article{}, errors.New("article gagal ditambahkan")
+	}
+	return a, nil
 }
