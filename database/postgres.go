@@ -69,3 +69,12 @@ func ReadArticle(id string) (*Article, error) {
 	}
 	return &a, nil
 }
+
+func ReadArticles() ([]*Article, error) {
+	var as []*Article
+	res := db.Find(&as)
+	if res.Error != nil {
+		return nil, errors.New("article tidak ditemukan")
+	}
+	return as, nil
+}
