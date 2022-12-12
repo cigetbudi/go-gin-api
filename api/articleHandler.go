@@ -35,7 +35,7 @@ func postArticle(c *gin.Context) {
 // @Description  Responds with the list of all books as JSON.
 // @Tags         article
 // @Produce      json
-// @Param        id     query    string  true  "ID"
+// @Param        id     path    string  true  "ID"
 // @Success      200    json    models.Article
 // @Failure      404    json    gin.H
 // @Router       /api/v1/articles/{id} [get]

@@ -37,7 +37,7 @@ paths:
       description: Responds with the list of all books as JSON.
       parameters:
       - description: ID
-        in: query
+        in: path
         name: id
         required: true
         type: string
