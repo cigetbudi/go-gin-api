@@ -18,7 +18,7 @@ const docTemplate = `{
     "paths": {
         "/api/v1/articles": {
             "get": {
-                "description": "Responds with the list of all books as JSON.",
+                "description": "Responds with the list of all articles as JSON.",
                 "produces": [
                     "application/json"
                 ],
@@ -40,11 +40,40 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "post": {
+                "description": "Takes a article JSON and store in DB. Return saved JSON.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "article"
+                ],
+                "summary": "Post a new Article",
+                "parameters": [
+                    {
+                        "description": "Article JSON",
+                        "name": "article",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Article"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Article"
+                        }
+                    }
+                }
             }
         },
         "/api/v1/articles/{id}": {
             "get": {
-                "description": "Responds with the list of all books as JSON.",
+                "description": "Responds with the list of all article as JSON.",
                 "produces": [
                     "application/json"
                 ],

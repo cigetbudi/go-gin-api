@@ -8,6 +8,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// PostArticle             godoc
+// @Summary      Post a new Article
+// @Description  Takes a article JSON and store in DB. Return saved JSON.
+// @Tags         article
+// @Produce      json
+// @Param        article  body      models.Article  true  "Article JSON"
+// @Success      200   {object}  models.Article
+// @Router       /api/v1/articles [post]
 func postArticle(c *gin.Context) {
 	var a models.Article
 	if err := c.ShouldBindJSON(&a); err != nil {
@@ -32,7 +40,7 @@ func postArticle(c *gin.Context) {
 
 // GetArticle           godoc
 // @Summary      Get Article By id
-// @Description  Responds with the list of all books as JSON.
+// @Description  Responds with the list of all article as JSON.
 // @Tags         article
 // @Produce      json
 // @Param        id     path    string  true  "ID"
@@ -56,7 +64,7 @@ func getArticle(c *gin.Context) {
 
 // GetArticles           godoc
 // @Summary      Get Article array
-// @Description  Responds with the list of all books as JSON.
+// @Description  Responds with the list of all articles as JSON.
 // @Tags         article
 // @Produce      json
 // @Success      200  {array}  []models.Article

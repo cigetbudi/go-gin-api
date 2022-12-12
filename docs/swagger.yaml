@@ -17,7 +17,7 @@ info:
 paths:
   /api/v1/articles:
     get:
-      description: Responds with the list of all books as JSON.
+      description: Responds with the list of all articles as JSON.
       produces:
       - application/json
       responses:
@@ -32,9 +32,28 @@ paths:
       summary: Get Article array
       tags:
       - article
+    post:
+      description: Takes a article JSON and store in DB. Return saved JSON.
+      parameters:
+      - description: Article JSON
+        in: body
+        name: article
+        required: true
+        schema:
+          $ref: '#/definitions/models.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Article'
+      summary: Post a new Article
+      tags:
+      - article
   /api/v1/articles/{id}:
     get:
-      description: Responds with the list of all books as JSON.
+      description: Responds with the list of all article as JSON.
       parameters:
       - description: ID
         in: path
