@@ -4,6 +4,7 @@ import (
 	"go-gin-api/database"
 	"go-gin-api/models"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -82,8 +83,21 @@ func getArticles(c *gin.Context) {
 	})
 }
 
+// PutArticle             godoc
+// @Summary      Update an Article
+// @Description  Takes a article JSON and store in DB. Return saved JSON.
+// @Tags         article
+// @Produce      json
+// @Param        id     path    string  true  "ID"
+// @Param        article  body      models.Article  true  "Article JSON"
+// @Success      200   {object}  models.Article
+// @Router       /api/v1/articles/{id} [put]
 func putArticle(c *gin.Context) {
 	var a models.Article
+	id := c.Param("id")
+	idInt, _ := strconv.ParseInt(id, 10, 64)
+	a.ID = uint(idInt)
+
 	if err := c.ShouldBindJSON(&a); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err,
@@ -101,6 +115,15 @@ func putArticle(c *gin.Context) {
 	})
 }
 
+// DeleteArticle           godoc
+// @Summary      Delete Article By id
+// @Description  Responds with JSON message.
+// @Tags         article
+// @Produce      json
+// @Param        id     path    string  true  "ID"
+// @Success      200    json    gin.H
+// @Failure      404    json    gin.H
+// @Router       /api/v1/articles/{id} [delete]
 func deleteArticle(c *gin.Context) {
 	id := c.Param("id")
 	err := database.DeleteArticle(id)

@@ -10,7 +10,7 @@ func init() {
 	database.NewPostGresSQLClient()
 }
 
-// @title Swagger Example API
+// @title Article API ginSwagger
 // @version 1.0
 func main() {
 	r := api.SetupRouter()

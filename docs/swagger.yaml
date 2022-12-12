@@ -12,7 +12,7 @@ definitions:
     type: object
 info:
   contact: {}
-  title: Swagger Example API
+  title: Article API ginSwagger
   version: "1.0"
 paths:
   /api/v1/articles:
@@ -52,6 +52,28 @@ paths:
       tags:
       - article
   /api/v1/articles/{id}:
+    delete:
+      description: Responds with JSON message.
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: json
+        "404":
+          description: Not Found
+          schema:
+            type: json
+      summary: Delete Article By id
+      tags:
+      - article
     get:
       description: Responds with the list of all article as JSON.
       parameters:
@@ -72,6 +94,30 @@ paths:
           schema:
             type: json
       summary: Get Article By id
+      tags:
+      - article
+    put:
+      description: Takes a article JSON and store in DB. Return saved JSON.
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Article JSON
+        in: body
+        name: article
+        required: true
+        schema:
+          $ref: '#/definitions/models.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Article'
+      summary: Update an Article
       tags:
       - article
 swagger: "2.0"
