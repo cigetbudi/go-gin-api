@@ -107,7 +107,7 @@ func putArticle(c *gin.Context) {
 	res, err := database.UpdateArticle(&a)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err,
+			"error": err.Error(),
 		})
 		return
 	}
