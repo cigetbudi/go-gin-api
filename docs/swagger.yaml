@@ -1,0 +1,58 @@
+definitions:
+  models.Article:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      rate:
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /api/v1/articles:
+    get:
+      description: Responds with the list of all books as JSON.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Article'
+              type: array
+            type: array
+      summary: Get Article array
+      tags:
+      - article
+  /api/v1/articles/{id}:
+    get:
+      description: Responds with the list of all books as JSON.
+      parameters:
+      - description: ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: json
+        "404":
+          description: Not Found
+          schema:
+            type: json
+      summary: Get Article By id
+      tags:
+      - article
+swagger: "2.0"

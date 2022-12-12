@@ -30,6 +30,15 @@ func postArticle(c *gin.Context) {
 
 }
 
+// GetArticle           godoc
+// @Summary      Get Article By id
+// @Description  Responds with the list of all books as JSON.
+// @Tags         article
+// @Produce      json
+// @Param        id     query    string  true  "ID"
+// @Success      200    json    models.Article
+// @Failure      404    json    gin.H
+// @Router       /api/v1/articles/{id} [get]
 func getArticle(c *gin.Context) {
 	id := c.Param("id")
 
@@ -45,6 +54,13 @@ func getArticle(c *gin.Context) {
 	})
 }
 
+// GetArticles           godoc
+// @Summary      Get Article array
+// @Description  Responds with the list of all books as JSON.
+// @Tags         article
+// @Produce      json
+// @Success      200  {array}  []models.Article
+// @Router       /api/v1/articles [get]
 func getArticles(c *gin.Context) {
 	as, err := database.ReadArticles()
 	if err != nil {
